@@ -1,0 +1,21 @@
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+  display: inline-block;
+}
+img {
+  display: inline;
+}
+input {
+  display: block;
+}
+fieldset {
+  padding-top: 10px;
+  margin: 10px 0;
+}
+label {
+  display: block;
+}
+
+
