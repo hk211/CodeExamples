@@ -1,21 +1,10 @@
 import { Component } from '@angular/core';
+// import { ngModel }  from '@angular/core';
 
 @Component({
   selector: 'my-app', // selector name <my-app> in index.html it puts template html
   template: `
-    <fieldset [style.display.block]="hideAddress">
-      <img [src]="image"/><h1>{{name}}</h1>
-
-      <label [style.color]="color">Fav colour:</label>
-      <button (click)="clicked()">Change colour</button>
-      
-      <select (change)="changeColor($event.target.value)">
-        <option>Red</option>
-        <option>Blue</option>
-        <option>Green</option> 
-      </select>
-    </fieldset>
-
+    <h1>Customers</h1>
     <div [hidden]="hideAddress">
       <legend>Address</legend>
       <label for="city">City:</label>
@@ -32,6 +21,18 @@ import { Component } from '@angular/core';
         <option>West</option>
       </select>
       <p>{{name}} is in the {{region}} region</p>
+
+      <input #namebox [value]="name" (input)="name=$event.target.value">
+      
+      Fire on enter: 
+      <input #namebox [value]="name" (keyup.enter)="name=$event.target.value">
+
+      Fire on enter and blur: 
+      <input #namebox [value]="name" (keyup.enter)="name=$event.target.value"
+                                     (blur)="name=$event.target.value">
+
+      Two way data-binding recommending:
+      <input [(ngModel)]="name">
     </div>
 
     <button (click)="addressClick()">Show/Hide address</button>
@@ -39,23 +40,11 @@ import { Component } from '@angular/core';
 })
 // we need to export it so it can be imported
 export class AppComponent  {
-  image = 'favicon.ico';
   city = 'London';
-  color = 'red';
   name = 'Angular';
   region = 'North';
   street = 'Albatross Close';
   hideAddress = false;
-
-  // Event bindings go down to the properties
-  clicked() {
-    this.color = this.color === 'red' ? 'blue' : 'red';
-  }
-
-  changeColor(color: string) {
-    console.log(color);
-    this.color = color;
-  }
 
   addressClick() {
     console.log(this.hideAddress);
